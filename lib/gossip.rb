@@ -28,4 +28,14 @@ class Gossip
   def self.find(id)
     return Gossip.all[id]
   end
+
+  def self.upgrade(author, content, id)
+    gossip_array = self.all
+		gossip_array[id.to_i].content = content
+		gossip_array[id.to_i].author = author
+		File.open("./db/gossip.csv", 'w') {|file| file.truncate(0) }
+		gossip_array.each do |gossip|
+			gossip.save
+		end	
+  end
 end

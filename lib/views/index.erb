@@ -8,7 +8,8 @@
     <% gossips.each.with_index do |gossip, index| %>
       <p>
         <a href = 'gossips/<%= index %>' >Potin n°<%= index + 1 %></a><br>
-        écrit par <%= gossip.author %><br/>
+        écrit par <%= gossip.author %><br/> 
+        <a href = '/gossips/<%=index%>/edit/'>Éditer ce potin</a>
       </p>
     <% end %>
   </body>
