@@ -5,10 +5,26 @@
   <body>
     <h1>PAGE POTIN</h1>
     <h3>Voici la page du potin n°<%= id + 1%></h3>
+
       <p>
         <b>Son Auteur :</b><br> == <%= gossip.author %> == <br/><br>
         <b>Le contenu du potin :</b><br> == <%= gossip.content %> == <br/><br>
       </p>
-      <a href="/">Lien pour revenir au menu. </a>
+
+      <b><a href="/">Lien pour revenir au menu. </a></b>
+
+      <h3>Commentaires relatifs au potin n°<%= id + 1%>:</h3>
+      <% comments.each_with_index do |comment, index|%>
+      <p><u>Commentaire n°<%=index + 1 %>:</u> "
+      <i><%=comment.content%></i>" écrit par <b><%=comment.author%></b><br></p>
+      <%end%>
+
+      <form action='/gossips/<%= id%>' method='POST'>
+        Ajouter un commentaire <br>
+        <b>Auteur:      <b><input type='text' name='comment_author'/><br/>
+        <b>Commentaire: <b><input type='text' name='comment_content'/><br/>
+        <input type='submit'/>
+      </form>
+      <p></p>
   </body>
 </html>
