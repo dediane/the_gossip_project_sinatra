@@ -1,3 +1,4 @@
+#Cette classe représente un gossip, elle est définie par son auteur et son contenu.
 class Gossip
 
   attr_accessor :author, :content
@@ -7,12 +8,14 @@ class Gossip
     @content = content
   end
 
+  #Sauvegarde l'instance dans le fichier csv
   def save
     CSV.open("./db/gossip.csv", "ab") do |csv|
-      csv << [self.author, self.content]
+      csv << [@author, @content]
     end
   end
 
+  #Renvoi la liste de tous les potins contenus dans le fichier CSV
   def self.all
     all_gossips = []
     CSV.read("./db/gossip.csv").each do |csv_line|
@@ -21,11 +24,8 @@ class Gossip
     return all_gossips
   end
 
+  #renvoi le gossip correspondant à l'id passé en parametres
   def self.find(id)
-    i = 0
-    CSV.read("./db/gossip.csv").each do |csv_line|
-      puts csv_line if i == id
-      i += 1
-    end
+    return Gossip.all[id]
   end
 end
