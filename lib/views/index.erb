@@ -6,6 +6,7 @@
   <body>
     <h1>Mon super site de gossip, depuis le dossier views !</h1>
     <a href="/gossips/new/">Créer un nouveau gossip</a>
+      <% gossips.each do |gossip| %>
         <p>
           <%= gossip.author %><br/>
           <%= gossip.content %>
